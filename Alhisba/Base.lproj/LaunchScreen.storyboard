@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tus-aL-5jw"/>
+                        <viewControllerLayoutGuide type="bottom" id="UsG-2E-njZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="jFx-Ua-l0w">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36862745099999999" green="0.43921568630000002" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISU-De-bug">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="LvT-kc-qFE">
+                                <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="WaI-hR-O1u"/>
+                                    <constraint firstAttribute="height" constant="200" id="w1V-RN-zHP"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="jFx-Ua-l0w" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="259-CB-Jpc"/>
+                            <constraint firstItem="jFx-Ua-l0w" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="JoZ-cJ-tiw"/>
+                            <constraint firstItem="LvT-kc-qFE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="P1c-38-fpt"/>
+                            <constraint firstItem="jFx-Ua-l0w" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Prq-Tm-87R"/>
+                            <constraint firstItem="jFx-Ua-l0w" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Y68-K8-xwd"/>
+                            <constraint firstAttribute="trailing" secondItem="jFx-Ua-l0w" secondAttribute="trailing" id="ZKu-0f-dfC"/>
+                            <constraint firstItem="ISU-De-bug" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="b5V-ei-967"/>
+                            <constraint firstItem="jFx-Ua-l0w" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="eJZ-vI-5pZ"/>
+                            <constraint firstItem="ISU-De-bug" firstAttribute="centerY" secondItem="LvT-kc-qFE" secondAttribute="centerY" id="kDQ-Hs-zO8"/>
+                            <constraint firstItem="jFx-Ua-l0w" firstAttribute="top" secondItem="ISU-De-bug" secondAttribute="top" id="llw-wc-RNY"/>
+                            <constraint firstAttribute="trailing" secondItem="ISU-De-bug" secondAttribute="trailing" id="rgX-IP-LZb"/>
+                            <constraint firstItem="LvT-kc-qFE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zEj-CP-8tY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo.png" width="435" height="262"/>
+        <image name="newBg.png" width="996" height="1228"/>
+    </resources>
+</document>
