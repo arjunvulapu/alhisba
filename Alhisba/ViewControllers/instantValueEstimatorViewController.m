@@ -90,10 +90,14 @@
     
     buildingSpecStr = [[NSMutableString alloc]init];
 
-    _advancedBtn.layer.borderColor = [UIColor whiteColor].CGColor;
-    _advancedBtn.layer.borderWidth=1.0;
-    _advancedBtn.layer.cornerRadius=5;
-    _advancedBtn.clipsToBounds=YES;
+//    _advancedBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+//    _advancedBtn.layer.borderWidth=1.0;
+//    _advancedBtn.layer.cornerRadius=5;
+//    _advancedBtn.clipsToBounds=YES;
+
+    _advancedBtnbackgroundView.layer.cornerRadius=15;
+    _advancedBtnbackgroundView.clipsToBounds=YES;
+
     [_estimatedPriceLbl setTextAlignment:NSTextAlignmentCenter];
     _propertyStatusLbl.text = Localized(@"Property Status");
     _sharingLbl.text = Localized(@"Shared");
@@ -265,7 +269,29 @@
     _landLbl.text = Localized(@"Land");
     
     _allspecTopHeight.constant = 0;
-
+    buildingSpec1=buildingSpec2=buildingSpec3=buildingSpec4=locationStr=locationSpecStr=plotSpecStr=facingSpecStr=directiontId=curbtId=areaId=landSizeId=streetId=filedLocationId=@"";
+    
+    _selectAreaFld.text = @"";
+    
+    _selectLandSize.text = @"";
+    
+    _selectStreet.text = @"";
+    
+    _selectLocationFld.text = @"";
+    
+    _buildingAgeFl.text = @"";
+    
+    _finishingQualityFld.text = @"";
+    
+    _basementFld.text = @"";
+    
+    _noOfFloorsFld.text = @"";
+    
+    _selectdirectionFld.text = @"";
+    
+    _selectCurbFLd.text = @"";
+    
+    _selectdirectionFld.text = @"";
 }
 
 - (void)customSetup
@@ -337,7 +363,42 @@
         [self.view addGestureRecognizer: self.revealViewController.tapGestureRecognizer];
     }
 }
-
+-(void)clearToStartForArea{
+   
+    _advancedBtn.selected = NO;
+status = @"1";
+    _buildingBtn.selected = NO;
+    _landBtn.selected = YES;
+   
+    [_buildingBtn setImage:[UIImage imageNamed:@"addas.png"] forState:UIControlStateNormal];
+    [_landBtn setImage:[UIImage imageNamed:@"addass.png"] forState:UIControlStateNormal];
+    
+    _selectLandSize.text = @"";
+    
+    _selectStreet.text = @"";
+    
+    _selectLocationFld.text = @"";
+    
+    _buildingAgeFl.text = @"";
+    
+    _finishingQualityFld.text = @"";
+    
+    _basementFld.text = @"";
+    
+    _noOfFloorsFld.text = @"";
+    
+    _selectdirectionFld.text = @"";
+    
+    _selectCurbFLd.text = @"";
+    
+    _selectdirectionFld.text = @"";
+    locationSpectitleStr = [[NSMutableString alloc]init];
+    plotSpecTitleStr= [[NSMutableString alloc]init];
+     facinfSpecTitleStr= [[NSMutableString alloc]init];
+    crackArray1 = [[NSMutableArray alloc] init];
+    curbContainedStr= [[NSMutableArray alloc] init];
+    [self advancedSpecBtnTapped:nil];
+}
 -(void)clearToStart{
     _advancedSpecImage.image = [UIImage imageNamed:@"plu.png"];
     _advancedBtn.selected = NO;
@@ -368,6 +429,10 @@
     _selectCurbFLd.text = @"";
     
     _selectdirectionFld.text = @"";
+    
+    crackArray1 = [[NSMutableArray alloc] init];
+    curbContainedStr= [[NSMutableArray alloc] init];
+    
 }
 #pragma Parse Function .......
 
@@ -416,7 +481,6 @@
 //                                                   _sabahCityTopHeight.constant = 20;
 //                                               }
 //
-                                               [self clearToStart];
                                                parseRe = @"parseRe";
                 [self makePostCallForPage:LIVE_VALUES withParams:@{@"area_id":timeStr} withRequestCode:100];
                                                
@@ -510,7 +574,7 @@
             _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
             _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
             _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
-            
+            _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
             parseRe = @"parse";
         }
         else{
@@ -519,8 +583,9 @@
             _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
             _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
             _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
+            _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
 
-            _shareBtnTop.constant = _plotSpecHeight.constant+_facingHeight.constant+_specCollectionViewHeight.constant-80+310;
+            //_shareBtnTop.constant = _plotSpecHeight.constant+_facingHeight.constant+_specCollectionViewHeight.constant-80+310;
             
         }
     
@@ -534,6 +599,7 @@
         [_plotSpecCollectionView reloadData];
         [_facingCollectinView reloadData];
         [_sharedCollectionView reloadData];
+        [self clearToStartForArea];
 
     }
     else if (reqeustCode == 10){
@@ -580,7 +646,8 @@
         _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
         _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
         _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
-        
+        _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
+
 //        _allspecHeight.constant = plotSpecArray.count*28+facingArray.count *28+locationSpecArray.count *28+200;
 //        //            _shareBtnTop.constant = _allspecHeight.constant-850;
 //
@@ -590,6 +657,8 @@
         [_locationSpecCollectionView reloadData];
         [_plotSpecCollectionView reloadData];
         [_facingCollectinView reloadData];
+        [_sharedCollectionView reloadData];
+
     }
     
     else if (reqeustCode == 30){
@@ -862,7 +931,7 @@
                 
                 NSLog(@"filter contains string is %@",curbContainedStr);
                 
-                curbContainedStr = [[NSMutableString alloc]init];
+               // curbContainedStr = [[NSMutableString alloc]init];
                 
                 NSString *appendStrig2 = @",";
                 
@@ -1549,7 +1618,6 @@
         areaId =[area valueForKey:@"id"];
         self.selectAreaFld.text = [[Utils getLanguage] isEqualToString:KEY_LANGUAGE_AR]?[area valueForKey:@"value_arabic"]:[area valueForKey:@"value_english"];
         [self makePostCallForPage:LIVE_VALUES withParams:@{@"area_id":areaId} withRequestCode:100];
- [self clearToStart];
     };
     
     [self presentPopupViewController:vc animationType:MJPopupViewAnimationSlideBottomTop dismissed:nil];
@@ -1805,7 +1873,8 @@
                 _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
                 _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
                 _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
-                
+                _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
+
 //                _specCollectionViewHeight.constant = 150;
                 _sharingBtnHeight.constant = 0;
                 
@@ -1831,10 +1900,11 @@
                 _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
                 _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
                 _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
+                _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
+//1
+            _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant+_locationCheckHeight.constant+_sharedCollectionViewHeight.constant+300+20+70;
                 
-            _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant+_locationCheckHeight.constant+300+100+20;
-                
-    _shareBtnTop.constant = _plotSpecHeight.constant+_facingHeight.constant+_locationCheckHeight.constant+310+80;
+    //_shareBtnTop.constant = _plotSpecHeight.constant+_facingHeight.constant+_locationCheckHeight.constant+310+80;
 
 //                _plotSpecHeight.constant = 180;
 //                _facingHeight.constant = 400;
@@ -1858,8 +1928,9 @@
                 _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
                 _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
                 _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
-                
-     _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant+ _specCollectionViewHeight.constant+300;
+                _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
+
+     _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant+ _specCollectionViewHeight.constant+240+_sharedCollectionViewHeight.constant;
                 
     _shareBtnTop.constant =_plotSpecHeight.constant+_facingHeight.constant+ _specCollectionViewHeight.constant+310;
                 
@@ -1899,7 +1970,8 @@
                 _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
                 _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
                 _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
-                
+                _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
+
                 //                _specCollectionViewHeight.constant = 150;
                 _sharingBtnHeight.constant = 0;
                 
@@ -1925,8 +1997,9 @@
                 _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
                 _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
                 _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
-                
-                _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant+_locationCheckHeight.constant+300+100;
+                _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
+
+                _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant+_locationCheckHeight.constant+_sharedCollectionViewHeight.constant+300+40;
                 
                 _shareBtnTop.constant = _plotSpecHeight.constant+_facingHeight.constant+_locationCheckHeight.constant+310+80;
                 
@@ -1952,8 +2025,9 @@
                 _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
                 _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
                 _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
-                
-                _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant+ _specCollectionViewHeight.constant+300;
+                _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
+
+                _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant+ _specCollectionViewHeight.constant+240+ _sharedCollectionViewHeight.constant;
                 
                 _shareBtnTop.constant =_plotSpecHeight.constant+_facingHeight.constant+ _specCollectionViewHeight.constant+310;
                 
@@ -2191,7 +2265,11 @@
                     [self showErrorAlertWithMessage:Localized(@"Please Enter Value LessThan 99")];
                 }
                 else{
-            [self makePostCallForPage:LIVE_RESULT withParams:@{@"area_id":areaId,@"size":landSizeId,@"street":streetId,@"location":filedLocationId,@"sea_facing":[NSString stringWithFormat:@"%@,%@",_seaFrontLengthsFld.text,_backStreetFld.text],@"land_spec":[NSString stringWithFormat:@"%@",locationSpecStr],@"status":status,@"building_spec":[NSString stringWithFormat:@"%@,%@,%@,%@",buildingSpec1,buildingSpec2,buildingSpec3,buildingSpec4],@"location_check":[NSString stringWithFormat:@"%@",locationStr],@"plot_spec":[NSString stringWithFormat:@"%@",plotSpecStr],@"facing":[NSString stringWithFormat:@"%@",facingSpecStr],@"direction":[NSString stringWithFormat:@"%@",directiontId],@"crub":[NSString stringWithFormat:@"%@",curbtId],@"crub_check":[NSString stringWithFormat:@"%@",crubCheckStr]} withRequestCode:30];
+                    NSString *sharedidsStr=@"";
+                    if(curbContainedStr.count>0){
+                        sharedidsStr=[curbContainedStr componentsJoinedByString:@","];
+                    }
+            [self makePostCallForPage:LIVE_RESULT withParams:@{@"area_id":areaId,@"size":landSizeId,@"street":streetId,@"location":filedLocationId,@"sea_facing":[NSString stringWithFormat:@"%@,%@",_seaFrontLengthsFld.text,_backStreetFld.text],@"land_spec":[NSString stringWithFormat:@"%@",locationSpecStr],@"status":status,@"building_spec":[NSString stringWithFormat:@"%@,%@,%@,%@",buildingSpec1,buildingSpec2,buildingSpec3,buildingSpec4],@"location_check":[NSString stringWithFormat:@"%@",locationStr],@"plot_spec":[NSString stringWithFormat:@"%@",plotSpecStr],@"facing":[NSString stringWithFormat:@"%@",facingSpecStr],@"direction":[NSString stringWithFormat:@"%@",directiontId],@"crub":[NSString stringWithFormat:@"%@",curbtId],@"crub_check":[NSString stringWithFormat:@"%@",sharedidsStr]} withRequestCode:30];
                 }
         }
     }
@@ -2252,7 +2330,11 @@
                 }
                 else{
             [self showHUD:@""];
-            [self makePostCallForPage:LIVE_RESULT withParams:@{@"area_id":areaId,@"size":landSizeId,@"street":streetId,@"location":filedLocationId,@"sea_facing":[NSString stringWithFormat:@"%@,%@",_seaFrontLengthsFld.text,_backStreetFld.text],@"land_spec":[NSString stringWithFormat:@"%@",locationSpecStr],@"status":status,@"building_spec":[NSString stringWithFormat:@"%@,%@,%@,%@",buildingSpec1,buildingSpec2,buildingSpec3,buildingSpec4],@"location_check":[NSString stringWithFormat:@"%@",locationStr],@"plot_spec":[NSString stringWithFormat:@"%@",plotSpecStr],@"facing":[NSString stringWithFormat:@"%@",facingSpecStr],@"direction":[NSString stringWithFormat:@"%@",directiontId],@"crub":[NSString stringWithFormat:@"%@",curbtId],@"crub_check":[NSString stringWithFormat:@"%@",sharedCheck]} withRequestCode:30];
+                    NSString *sharedidsStr=@"";
+                    if(curbContainedStr.count>0){
+                        sharedidsStr=[curbContainedStr componentsJoinedByString:@","];
+                    }
+            [self makePostCallForPage:LIVE_RESULT withParams:@{@"area_id":areaId,@"size":landSizeId,@"street":streetId,@"location":filedLocationId,@"sea_facing":[NSString stringWithFormat:@"%@,%@",_seaFrontLengthsFld.text,_backStreetFld.text],@"land_spec":[NSString stringWithFormat:@"%@",locationSpecStr],@"status":status,@"building_spec":[NSString stringWithFormat:@"%@,%@,%@,%@",buildingSpec1,buildingSpec2,buildingSpec3,buildingSpec4],@"location_check":[NSString stringWithFormat:@"%@",locationStr],@"plot_spec":[NSString stringWithFormat:@"%@",plotSpecStr],@"facing":[NSString stringWithFormat:@"%@",facingSpecStr],@"direction":[NSString stringWithFormat:@"%@",directiontId],@"crub":[NSString stringWithFormat:@"%@",curbtId],@"crub_check":[NSString stringWithFormat:@"%@",sharedidsStr]} withRequestCode:30];
                 }
             
         }
@@ -2316,8 +2398,9 @@
                 _plotSpecHeight.constant = (plotSpecArray.count/2 *50)+(plotSpecArray.count%2 *50);
                 _specCollectionViewHeight.constant = (locationSpecArray.count/2 *50)+(locationSpecArray.count%2 *50);
                 _facingHeight.constant = (facingArray.count/2 *50)+(facingArray.count%2 *50);
-                
-            _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant +_specCollectionViewHeight.constant+300;
+                _sharedCollectionViewHeight.constant =(curbCheckArray.count/2 *50)+(curbCheckArray.count%2 *50);
+
+            _allspecHeight.constant = _plotSpecHeight.constant+_facingHeight.constant +_specCollectionViewHeight.constant+240+ _sharedCollectionViewHeight.constant;
                 
 //            _shareBtnTop.constant = _allspecHeight.constant-850;
                 
@@ -3256,31 +3339,32 @@
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 //    [self makePostCallForPage:LIVE_RESULT withParams:@{@"area_id":areaId,@"size":landSizeId,@"street":streetId,@"location":filedLocationId,@"sea_facing":[NSString stringWithFormat:@"%@,%@",_seaFrontLengthsFld.text,_backStreetFld.text],@"land_spec":[NSString stringWithFormat:@"%@",locationSpecStr],@"status":status,@"building_spec":[NSString stringWithFormat:@"%@,%@,%@,%@",buildingSpec1,buildingSpec2,buildingSpec3,buildingSpec4],@"location_check":[NSString stringWithFormat:@"%@",locationStr],@"plot_spec":[NSString stringWithFormat:@"%@",plotSpecStr],@"facing":[NSString stringWithFormat:@"%@",facingSpecStr],@"direction":[NSString stringWithFormat:@"%@",directiontId],@"crub":[NSString stringWithFormat:@"%@",curbtId],@"crub_check":[NSString stringWithFormat:@"%@",crubCheckStr]} withRequestCode:30];
 
+   // reset all
     buildingSpec1=buildingSpec2=buildingSpec3=buildingSpec4=locationStr=locationSpecStr=plotSpecStr=facingSpecStr=directiontId=curbtId=areaId=landSizeId=streetId=filedLocationId=@"";
-
+    curbContainedStr=[[NSMutableArray alloc]init];
     _selectAreaFld.text = @"";
-    
+
     _selectLandSize.text = @"";
-    
+
     _selectStreet.text = @"";
-    
+
     _selectLocationFld.text = @"";
-    
+
     _buildingAgeFl.text = @"";
-    
+
     _finishingQualityFld.text = @"";
-    
+
     _basementFld.text = @"";
-    
+
     _noOfFloorsFld.text = @"";
-    
+
     _selectdirectionFld.text = @"";
-    
+
     _selectCurbFLd.text = @"";
-    
+
     _selectdirectionFld.text = @"";
     
-    parseRe = @"parseRe";
+   // parseRe = @"parseRe";
     //_selectCurbFLd.textColor = [UIColor clearColor];
     _selectAreaFld.delegate = self;
     _selectLandSize.delegate = self;
@@ -3336,7 +3420,7 @@
     buildingSpecsContained = [NSMutableArray array];
     
     [_landBtn setImage:[UIImage imageNamed:@"addass.png"] forState:UIControlStateNormal];
-    status = @"1";
+    //status = @"1";
     [_buildingBtn setImage:[UIImage imageNamed:@"addas.png"] forState:UIControlStateNormal];
     _landBtn.selected = YES;
     
@@ -3362,15 +3446,15 @@
     
     // [self fieldsHidden];
     
-    _allspecHeight.constant = 0;
-    _buildingSpecHeight.constant = 0;
-    _buildingSpecView.hidden = YES;
-    _allSpecsView.hidden = YES;
-    _locationCheckHeight.constant = 0;
-    _sharingBtnHeight.constant = 0;
-    
-    
-    status = @"1";
+//    _allspecHeight.constant = 0;
+//    _buildingSpecHeight.constant = 0;
+//    _buildingSpecView.hidden = YES;
+//    _allSpecsView.hidden = YES;
+//    _locationCheckHeight.constant = 0;
+//    _sharingBtnHeight.constant = 0;
+//    
+//    
+//    status = @"1";
 //    [_areaLbl setFont:[UIFont boldSystemFontOfSize:20]];
     [self.view setNeedsDisplay];
     _areaLbl.text = Localized(@"Area");
@@ -3471,7 +3555,7 @@
     _buildingLbl.text = Localized(@"Building");
     _landLbl.text = Localized(@"Land");
     
-    
+    [self clearToStart];
 }
 
 - (IBAction)areaInfoBtnAction:(id)sender {

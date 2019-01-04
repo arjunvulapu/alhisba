@@ -21,6 +21,7 @@
     
     NSString *pageLoading;
     int pageNumber;
+     BOOL loaded;
 }
 
 @end
@@ -73,10 +74,10 @@
     
     [self showHUD:@""];
 //    [self makePostCallForPage:NEWS withParams:@{@"page":@"0"} withRequestCode:23];
-    [self makePostCallForPage:NEWS withParams:@{} withRequestCode:23];
+    [self makePostCallForPage:NEWS withParams:@{@"page":@"0"} withRequestCode:23];
 
     self.navigationItem.title=Localized(@"NEWS");
-    
+     loaded = NO;
 }
 
 -(void)goBack{
@@ -98,8 +99,9 @@
             [newsArray addObject:dictionary];
         }
         NSLog(@"n %@",[newsArray valueForKey:@"id"]);
-        [_newsTableView reloadData];
+        //[_newsTableView reloadData];
         pageLoading = @"NO";
+         loaded=NO;
         pageNumber = 1;
     }else if(reqeustCode==24){
         NSLog(@"Result isss %lu",(unsigned long)newsArray.count);
@@ -107,19 +109,18 @@
         NSArray *array = (NSArray *)result;
         if(array.count==0){
             pageLoading = @"YES";
+            loaded=YES;
         }else{
             pageLoading = @"NO";
+            loaded=NO;
             pageNumber = pageNumber+1;
         }
         for (NSDictionary *dictionary in result) {
             [newsArray addObject:dictionary];
         }
-        NSLog(@"nt %@",[newsArray valueForKey:@"id"]);
-
-        [_newsTableView reloadData];
-
     }
-    
+    _newsTableView.reloadData;
+
 }
 -(void)loadmore
 {
@@ -138,13 +139,28 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"select %lu",(unsigned long)newsArray.count);
-    return newsArray.count;
+    //return newsArray.count;
+    if(newsArray.count>0 && !loaded){
+        return newsArray.count+1;
+    }else{
+        return newsArray.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if(indexPath.row == newsArray.count){
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCell" forIndexPath:indexPath];
+        UIActivityIndicatorView *activityIndicator = (UIActivityIndicatorView *)[cell.contentView viewWithTag:100];
+        [activityIndicator startAnimating];
+        
+        return cell;
+        
+        
+    }
+    else{
     static NSString *CellIdentifier = @"newsTableViewCell";
     
     newsTableViewCell *cell = [_newsTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -178,6 +194,7 @@
     cell.nesDes.text = htmlString;
 //    cell.nesDes.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     return cell;
+    }
 }
 
 
@@ -208,7 +225,16 @@
 //
 //    }
 //}
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath{
+if(indexPath.row == newsArray.count){
+    if(newsArray.count>0){
+            [self makePostCallForPage:NEWS withParams:@{@"page":[NSString stringWithFormat:@"%d",pageNumber]} withRequestCode:24];
 
+    }
+}
+}
 #pragma mark - SVPROGRESS HUD
 
 - (void) showHUD:(NSString *)labelText {

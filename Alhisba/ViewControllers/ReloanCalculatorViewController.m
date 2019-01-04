@@ -1380,8 +1380,8 @@
     
     else{
     [self showHUD:@""];
-    
-    [self makePostCallForPage:LOAN_CALCULATOR withParams:@{@"property":_enterPropertyValue.text,@"amt":@"",@"downamount":_downPaymentFld.text,@"loan":_loanAmountFld.text,@"grace_period_year":_graceYearsFld.text,@"grace_period_month":_graceMonthsFld.text,@"repayment_period_year":_repaymentYearsFld.text,@"repayment_period_month":_repaymentMonthsFld.text,@"profit":_anualRateFld.text,@"installment":installmentStr,@"payments":_noOfpaymentsFld.text} withRequestCode:1];
+        NSLog(@"%@",[self convertToEnglishNumber:_enterPropertyValue.text]);
+    [self makePostCallForPage:LOAN_CALCULATOR withParams:@{@"property":[self convertToEnglishNumber:_enterPropertyValue.text],@"amt":@"",@"downamount":[self convertToEnglishNumber:_downPaymentFld.text],@"loan":[self convertToEnglishNumber:_loanAmountFld.text],@"grace_period_year":[self convertToEnglishNumber:_graceYearsFld.text],@"grace_period_month":[self convertToEnglishNumber:_graceMonthsFld.text],@"repayment_period_year":[self convertToEnglishNumber:_repaymentYearsFld.text],@"repayment_period_month":[self convertToEnglishNumber:_repaymentMonthsFld.text],@"profit":[self convertToEnglishNumber:_anualRateFld.text],@"installment":[self convertToEnglishNumber:installmentStr],@"payments":[self convertToEnglishNumber:_noOfpaymentsFld.text]} withRequestCode:1];
     }
     
 //    _resultPopUpViewHeight.constant = 470;

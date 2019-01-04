@@ -234,5 +234,6 @@
 - (IBAction)facingInfobtnAction:(id)sender;
 - (IBAction)directionInfobtnAction:(id)sender;
 - (IBAction)crubInfobtnAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *advancedBtnbackgroundView;
 
 @end

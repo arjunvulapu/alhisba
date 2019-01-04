@@ -21,4 +21,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewBottom;
 @property (strong, nonatomic)NSString *fromMenu;
+@property (weak, nonatomic) IBOutlet UIImageView *backGroundImage;
+@property (weak, nonatomic) IBOutlet UIView *colorView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end

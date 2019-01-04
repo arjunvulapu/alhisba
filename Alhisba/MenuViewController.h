@@ -38,5 +38,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *instaImage;
 @property (weak, nonatomic) IBOutlet UIImageView *twitterImage;
 @property (weak, nonatomic) IBOutlet UIImageView *whatsAppImage;
+@property (weak, nonatomic) IBOutlet UIImageView *shareImage;
+- (IBAction)shareBtnAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *shareText;
+@property (weak, nonatomic) IBOutlet UILabel *ourSocialMediaLbl;
 
 @end

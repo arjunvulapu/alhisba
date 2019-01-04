@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1803DC7021CCE4EE001677F7 /* CCEMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1803DC6F21CCE4EE001677F7 /* CCEMainViewController.m */; };
 		180C81D521C0E70D00EE4DBC /* ic_twitter_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 180C81D221C0E6FB00EE4DBC /* ic_twitter_settings.png */; };
 		180C81D621C0E70D00EE4DBC /* ic_whatsup_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 180C81D321C0E6FC00EE4DBC /* ic_whatsup_settings.png */; };
 		180C81D721C0E70D00EE4DBC /* ic_instagram_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 180C81D421C0E70600EE4DBC /* ic_instagram_settings.png */; };
@@ -105,6 +106,7 @@
 		184C3B9E21269AE3007A939A /* Hacen Tunisia Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 184C3B9D21269AE3007A939A /* Hacen Tunisia Bd.ttf */; };
 		184C3BA1212A9398007A939A /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C3BA0212A9398007A939A /* PrivacyPolicyViewController.m */; };
 		1859701F21AE5574004B8399 /* ErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859701E21AE5573004B8399 /* ErrorViewController.m */; };
+		1881A4EC21C37C6F007176C6 /* shareApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 1881A4EB21C37C6D007176C6 /* shareApp.png */; };
 		188E64E12101E8B30071FBBF /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188E64E02101E8B20071FBBF /* ForgotPasswordViewController.m */; };
 		188E64E42101EB9B0071FBBF /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188E64E22101EB9A0071FBBF /* ChangePasswordController.m */; };
 		188EE113218B03DD0020A80D /* Reloan1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188EE111218B03DB0020A80D /* Reloan1ViewController.m */; };
@@ -228,6 +230,8 @@
 
 /* Begin PBXFileReference section */
 		17E33DDFB29DF0F993ED646A /* Pods-Alhisba.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alhisba.release.xcconfig"; path = "Pods/Target Support Files/Pods-Alhisba/Pods-Alhisba.release.xcconfig"; sourceTree = "<group>"; };
+		1803DC6E21CCE4EE001677F7 /* CCEMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCEMainViewController.h; sourceTree = "<group>"; };
+		1803DC6F21CCE4EE001677F7 /* CCEMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCEMainViewController.m; sourceTree = "<group>"; };
 		180C81D221C0E6FB00EE4DBC /* ic_twitter_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_twitter_settings.png; sourceTree = "<group>"; };
 		180C81D321C0E6FC00EE4DBC /* ic_whatsup_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_whatsup_settings.png; sourceTree = "<group>"; };
 		180C81D421C0E70600EE4DBC /* ic_instagram_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_instagram_settings.png; sourceTree = "<group>"; };
@@ -439,6 +443,7 @@
 		184C3BA0212A9398007A939A /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		1859701D21AE5573004B8399 /* ErrorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorViewController.h; sourceTree = "<group>"; };
 		1859701E21AE5573004B8399 /* ErrorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorViewController.m; sourceTree = "<group>"; };
+		1881A4EB21C37C6D007176C6 /* shareApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareApp.png; sourceTree = "<group>"; };
 		188E64DF2101E8B20071FBBF /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		188E64E02101E8B20071FBBF /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		188E64E22101EB9A0071FBBF /* ChangePasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordController.m; sourceTree = "<group>"; };
@@ -653,6 +658,7 @@
 				183F821C21A6721200515559 /* CMPopTipView */,
 				189F43BB21B564D400A54C58 /* ZHPopupView */,
 				18D748ED218C651700C7953D /* Alhisba.entitlements */,
+				1881A4EB21C37C6D007176C6 /* shareApp.png */,
 				188EE112218B03DC0020A80D /* Reloan1ViewController.h */,
 				188EE111218B03DB0020A80D /* Reloan1ViewController.m */,
 				1828828D20FF4D800067DB66 /* SelectArea1ViewController.h */,
@@ -682,6 +688,8 @@
 				18AE27DD21B00083005A38D7 /* nlogo.png */,
 				18F79DCB2181F22500E8A0BB /* blackRight.png */,
 				182882A320FF694A0067DB66 /* RegisterdTradesViewController.h */,
+				1803DC6E21CCE4EE001677F7 /* CCEMainViewController.h */,
+				1803DC6F21CCE4EE001677F7 /* CCEMainViewController.m */,
 				18DBCD1321809216001842D8 /* JBWhatsAppActivity */,
 				1828819620FF4D620067DB66 /* Third-Party */,
 				1828818E20FF4D080067DB66 /* Api Calling */,
@@ -1487,6 +1495,7 @@
 				1828827120FF4D620067DB66 /* SVProgressHUD.bundle in Resources */,
 				18DBCD1821809217001842D8 /* whatsapp@2x.png in Resources */,
 				1828825D20FF4D620067DB66 /* delete.png in Resources */,
+				1881A4EC21C37C6F007176C6 /* shareApp.png in Resources */,
 				18D6582B217078FD00610697 /* LICENSE in Resources */,
 				189F43CA21B564D400A54C58 /* README.md in Resources */,
 				182882A020FF50E30067DB66 /* logo.png in Resources */,
@@ -1623,6 +1632,7 @@
 				1828826420FF4D620067DB66 /* SDWebImageManager.m in Sources */,
 				18D65831217078FD00610697 /* ActionSheetMultipleStringPicker.m in Sources */,
 				18EAC7E7210ADAE2009E8333 /* OfficialApraisalViewController.m in Sources */,
+				1803DC7021CCE4EE001677F7 /* CCEMainViewController.m in Sources */,
 				1828825020FF4D620067DB66 /* LSFloatingActionMenu.m in Sources */,
 				1828825320FF4D620067DB66 /* MCLocalization.m in Sources */,
 				1828825220FF4D620067DB66 /* MBProgressHUD.m in Sources */,

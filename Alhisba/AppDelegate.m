@@ -24,14 +24,14 @@
 - (void)setSubstituteFontName:(NSString *)name UI_APPEARANCE_SELECTOR {
     // NSLog(@"%@",name);
      //NSLog(@"%@-%@",self.font.fontName,self.font.fontDescriptor.fontAttributes);
-//    if(isBold(self.font.fontDescriptor)){
-//        NSString *str =[NSString stringWithFormat:@"%@-Bold",name];
-//        self.font = [UIFont fontWithName:str size:self.font.pointSize];
-//
-//    }else{
+    if(isBold(self.font.fontDescriptor)){
+        NSString *str =[NSString stringWithFormat:@"%@-Bold",name];
+        self.font = [UIFont fontWithName:str size:self.font.pointSize];
+
+    }else{
     self.font = [UIFont fontWithName:name size:self.font.pointSize];
-    //}
-    
+    }
+
 }
 BOOL isBold(UIFontDescriptor * fontDescriptor)
 {

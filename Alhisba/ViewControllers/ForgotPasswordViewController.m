@@ -45,7 +45,7 @@
 
     if ([[Utils getLanguage] isEqualToString:KEY_LANGUAGE_AR]) {
         backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [backButton setImage:[UIImage imageNamed:@"backWhiteright.png"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"back-whiteright.png"] forState:UIControlStateNormal];
         [backButton addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         backButton.frame = CGRectMake(0, 0, 30, 30);
         UIBarButtonItem *customBarRightBtn = [[UIBarButtonItem alloc] initWithCustomView:backButton];
@@ -59,8 +59,7 @@
         UIBarButtonItem *customBarRightBtn = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:negativeSpacer,customBarRightBtn,nil];
     }
-    
-    
+   
     if ([[Utils getLanguage] isEqualToString:KEY_LANGUAGE_AR]) {
         self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont fontWithName:@"DroidArabicKufi-Bold"size:20.0],NSFontAttributeName,nil];
     }

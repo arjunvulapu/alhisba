@@ -195,7 +195,6 @@
 //    [self presentViewController:activityViewController animated:YES completion:^{}];
     
     
-    
     UIImage *imageToShare = [self captureView:_sharedView inSize:_sharedView.frame.size];
     
     

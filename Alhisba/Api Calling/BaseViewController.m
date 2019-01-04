@@ -198,23 +198,41 @@
 }
 - (UIImage *)captureView: (UIView *)view inSize: (CGSize)size
 {
-    UIGraphicsBeginImageContext(size);
-    
+   // UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+
 
     CGSize viewSize = view.frame.size;
 
     CGContextRef context = UIGraphicsGetCurrentContext();
-  
+    CGRect drawRect = CGRectMake(view.frame.origin.x, view.frame.origin.y,view.frame.size.width, view.frame.size.height);
+
+    CGContextSetRGBFillColor(context, 1.0f/255.0f, 33.0f/255.0f, 72.0f/255.0f, 1.0f);
+    CGContextFillRect(context, drawRect);
     [view.layer renderInContext: UIGraphicsGetCurrentContext()];
-    
+
 
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     return viewImage;
-    
+
 
 }
+//- (UIImage *)captureView: (UIView *)view inSize: (CGSize)size{
+//  
+//    // Begin context
+//    UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.0);
+//    
+//    // Draw view in that context
+//    drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
+//    
+//    // And finally, get image
+//    let image = UIGraphicsGetImageFromCurrentImageContext()
+//    UIGraphicsEndImageContext()
+//    return image;
+//    
+//}
 #pragma mark - HUD
 
 - (void) showHUD:(NSString *)labelText {
@@ -431,5 +449,31 @@
     NSString *str = [formatter stringFromNumber:num1];
     return str;
 }
-
+-(NSString*)anyLangtoEnglish:(NSString*)str{
+    NSString *NumberString = @"۸۸۸";
+    NSNumberFormatter *Formatter = [[NSNumberFormatter alloc] init];
+    NSLocale *locale = [NSLocale localeWithLocaleIdentifier:@"EN"];
+    [Formatter setLocale:locale];
+    NSNumber *newNum = [Formatter numberFromString:NumberString];
+    if (newNum) {
+        NSLog(@"%@", newNum);
+    }
+    return [NSString stringWithFormat:@"%@",newNum];
+}
+-(NSString *)convertToEnglishNumber:(NSString *) string {
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"fa"];
+    for (NSInteger i = 0; i < 10; i++) {
+        NSNumber *num = @(i);
+        string = [string stringByReplacingOccurrencesOfString:[formatter stringFromNumber:num] withString:num.stringValue];
+    }
+    
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"ar"];
+    for (NSInteger i = 0; i < 10; i++) {
+        NSNumber *num = @(i);
+        string = [string stringByReplacingOccurrencesOfString:[formatter stringFromNumber:num] withString:num.stringValue];
+    }
+    
+    return string;
+}
 @end

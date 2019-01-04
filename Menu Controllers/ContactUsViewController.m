@@ -26,7 +26,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = Localized(@"Contact Us");
+    _mobileNoLbl.text = @"";
+    _emailLbl.text = @"";
+    _weblinkLbl.text = @"";
     
+        _timeLbl.text = @"";
+        _locationInfoLbl.text = @"";
     _nameFld.delegate = self;
     _emailFld.delegate = self;
     _phoneFld.delegate = self;
@@ -159,10 +164,16 @@
         _mobileNoLbl.text = [contactDetailsArray valueForKey:@"phone_no"];
         _emailLbl.text = [contactDetailsArray valueForKey:@"email"];
         _weblinkLbl.text = [contactDetailsArray valueForKey:@"website"];
-        _timeLbl.text = [contactDetailsArray valueForKey:@"timing_english"];
-        _locationInfoLbl.text = [contactDetailsArray valueForKey:@"address_english"];
+        if ([[Utils getLanguage] isEqualToString:KEY_LANGUAGE_AR]) {
+
+        _timeLbl.text = [contactDetailsArray valueForKey:@"timing_arabic"];
+        _locationInfoLbl.text = [contactDetailsArray valueForKey:@"address_arabic"];
+        }else{
+            _timeLbl.text = [contactDetailsArray valueForKey:@"timing_english"];
+            _locationInfoLbl.text = [contactDetailsArray valueForKey:@"address_english"];
+        }
         
-        latString = [contactDetailsArray valueForKey:@"lattitude"];
+        latString = [contactDetailsArray valueForKey:@"latitude"];
         longString = [contactDetailsArray valueForKey:@"longitude"];
         
         MKPointAnnotation*    annotation = [[MKPointAnnotation alloc] init];

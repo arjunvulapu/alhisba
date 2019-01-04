@@ -51,20 +51,27 @@
     [super viewDidLoad];
     
     _valid = [[NSString alloc] init];
-    
+    _shareText.text=Localized(@"Share Alhisba App");
+    _ourSocialMediaLbl.text=Localized(@"Our Social Media");
+
     [_loginBtn setTitle:Localized(@"Login") forState:UIControlStateNormal];
     [_registerBtn setTitle:Localized(@"Register") forState:UIControlStateNormal];
-    
-//    if ([[Utils getLanguage] isEqualToString:KEY_LANGUAGE_AR]) {
-//
-//        [_loginBtn.titleLabel setFont:[UIFont fontWithName:@"DroidArabicKufi-Bold"size:16]];
-//        [_registerBtn.titleLabel setFont:[UIFont fontWithName:@"DroidArabicKufi-Bold"size:16]];
-//    }
-//    else{
-//
-//        [_loginBtn.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:16]];
-//        [_registerBtn.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:16]];
-//    }
+//    _loginBtn.titleLabel.numberOfLines = 1;
+//    _loginBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+//    _loginBtn.titleLabel.lineBreakMode = NSLineBreakByClipping;
+//    _registerBtn.titleLabel.numberOfLines = 1;
+//    _registerBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+//    _registerBtn.titleLabel.lineBreakMode = NSLineBreakByClipping;
+    if ([[Utils getLanguage] isEqualToString:KEY_LANGUAGE_AR]) {
+
+        [_loginBtn.titleLabel setFont:[UIFont fontWithName:@"DroidArabicKufi-Bold"size:14]];
+        [_registerBtn.titleLabel setFont:[UIFont fontWithName:@"DroidArabicKufi-Bold"size:14]];
+    }
+    else{
+
+        [_loginBtn.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:14]];
+        [_registerBtn.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:14]];
+    }
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
@@ -94,7 +101,8 @@
 
     _whatsAppImage.image = [_whatsAppImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_whatsAppImage   setTintColor:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1]];
-
+    _shareImage.image = [_shareImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_shareImage   setTintColor:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1]];
     //        [cell.titleIMage1 setTintColor:[UIColor colorWithRed:49/255 green:49/255 blue:49/255 alpha:1]];
 }
 
@@ -735,5 +743,25 @@
         [[UIApplication sharedApplication] openURL:twitterURL];
     else
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.twitter.com/ta7weelapp"]];
+}
+- (IBAction)shareBtnAction:(id)sender {
+    
+    //NSString *str2 = Localized(@"Let me recommend you this application");
+
+    NSURL *url = [NSURL URLWithString:@"http://alhisba.com/download/"];
+    
+    NSMutableArray *activityItems = [NSMutableArray arrayWithObjects: url, nil];
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    activityViewController.excludedActivityTypes = @[
+                                                     UIActivityTypePrint,
+                                                     UIActivityTypeCopyToPasteboard,
+                                                     UIActivityTypeAssignToContact,
+                                                     UIActivityTypeSaveToCameraRoll,
+                                                     UIActivityTypeAddToReadingList,
+                                                     UIActivityTypeAirDrop];
+    
+    
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 @end

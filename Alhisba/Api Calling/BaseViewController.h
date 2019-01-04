@@ -47,4 +47,5 @@
 -(UIView*)addborderAndRoundRectTo:(UIView*)view;
 - (void)showInfo:(NSString*)Information:(id)sender;
 -(NSString *)strToCurrencyFormatter:(NSString *)num;
+-(NSString *)convertToEnglishNumber:(NSString *) string;
 @end

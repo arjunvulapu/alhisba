@@ -256,7 +256,12 @@
 
 -(void)parseResult:(id)result withCode:(int)reqeustCode{
 
-    resultArray = result;
+//    resultArray = result;
+    NSArray *array = (NSArray *)result;
+    for (NSDictionary *dictionary in array) {
+        [resultArray addObject:dictionary];
+    }
+    
     [_collectionView reloadData];
     [self hideHUD];
 }
@@ -265,6 +270,7 @@
 #pragma CollectionView Delegate & Data Souce Methods...
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    //return resultArray.count;
     
     return resultArray.count;
 }
@@ -277,9 +283,20 @@
     cell.cellBackView.layer.borderWidth = 2;
     cell.cellBackView.layer.cornerRadius = 12; // optional
     cell.cellBackView.backgroundColor = [UIColor colorWithRed:1.0f/255.0f green:33.0f/255.0f blue:72.0f/255.0f alpha:0.5f];
-    NSMutableDictionary *dic = [resultArray objectAtIndex:indexPath.row];
     [cell.tradesTitle setTextAlignment:NSTextAlignmentCenter];
-
+    NSMutableDictionary *dic=[[NSMutableDictionary alloc] init];
+  
+        dic = [resultArray objectAtIndex:indexPath.row];
+        if ([[Utils getLanguage] isEqualToString:KEY_LANGUAGE_AR]) {
+            
+            cell.tradesTitle.text = [dic valueForKey:@"name_arabic"];
+            
+        }
+        else{
+            cell.tradesTitle.text = [dic valueForKey:@"name_english"];
+        }
+        
+    
     [cell.tradesImage setImageWithURL:[dic valueForKey:@"image"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
     //_collectionView.scrollEnabled = NO;
@@ -287,14 +304,10 @@
     cell.tradesTitle.numberOfLines = 4;
     [cell.tradesTitle setFont:[UIFont boldSystemFontOfSize:14]];
     if ([[Utils getLanguage] isEqualToString:KEY_LANGUAGE_AR]) {
-     
-        cell.tradesTitle.text = [dic valueForKey:@"name_arabic"];
-        [cell.tradesTitle setFont:[UIFont fontWithName:@"DroidArabicKufi"size:14]];
-        
+    [cell.tradesTitle setFont:[UIFont fontWithName:@"DroidArabicKufi-Bold"size:12]];
     }
     else{
-        cell.tradesTitle.text = [dic valueForKey:@"name_english"];
-        [cell.tradesTitle setFont:[UIFont fontWithName:@"DroidSans" size:15]];
+        [cell.tradesTitle setFont:[UIFont fontWithName:@"DroidSans-Bold" size:12]];
     }
     
     
@@ -366,31 +379,35 @@
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 1) {
+    NSMutableDictionary *dic=[[NSMutableDictionary alloc] init];
+    
+    dic = [resultArray objectAtIndex:indexPath.row];
+    
+    if ([[dic valueForKey:@"id"]  isEqual: @"2"]) {
         
         RegisterdTradesViewController *obj = [self.storyboard instantiateViewControllerWithIdentifier:@"RegisterdTradesViewController"];
         obj.fromHome = @"fromHome";
         [self.navigationController pushViewController:obj animated:YES];
     }
-    else if (indexPath.row == 0){
+    else if ([[dic valueForKey:@"id"]  isEqual: @"1"]){
         
         instantValueEstimatorViewController *obj = [self.storyboard instantiateViewControllerWithIdentifier:@"instantValueEstimatorViewController"];
         [self.navigationController pushViewController:obj animated:YES];
     }
-    else if (indexPath.row == 2){
+    else if ([[dic valueForKey:@"id"]  isEqual: @"6"]){
         
     AuctionsViewController *obj = [self.storyboard instantiateViewControllerWithIdentifier:@"AuctionsViewController"];
         [self.navigationController pushViewController:obj animated:YES];
     }
-    else if (indexPath.row == 3){
+    else if ([[dic valueForKey:@"id"]  isEqual: @"3"]){
         CostEstimatorViewController *obj = [self.storyboard instantiateViewControllerWithIdentifier:@"CostEstimatorViewController"];
         [self.navigationController pushViewController:obj animated:YES];
     }
-    else if (indexPath.row == 5){
+    else if ([[dic valueForKey:@"id"]  isEqual: @"7"]){
         ReloanCalculatorViewController *obj = [self.storyboard instantiateViewControllerWithIdentifier:@"ReloanCalculatorViewController"];
         [self.navigationController pushViewController:obj animated:YES];
     }
-    else if (indexPath.row == 6){
+    else if ([[dic valueForKey:@"id"]  isEqual: @"5"]){
 //        OfficialApraisalViewController *obj = [self.storyboard instantiateViewControllerWithIdentifier:@"OfficialApraisalViewController"];
 //        [self.navigationController pushViewController:obj animated:YES];
     }

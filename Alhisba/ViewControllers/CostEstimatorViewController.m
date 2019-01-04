@@ -225,5 +225,22 @@ else{
     [SVProgressHUD dismissWithDelay:(NSTimeInterval) 0.2f];
 }
 
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    
+}
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    _backGroundImage.hidden=YES;
+    _colorView.hidden=YES;
+    _activityIndicator.hidden=YES;
+
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"Failed to load with error :%@",[error debugDescription]);
+    
+}
 @end
